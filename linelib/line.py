@@ -8,6 +8,7 @@ from linebot.exceptions import (
 )
 
 from linebot.models import *
+import shlex
 
 class MissingArgument(Exception):
     pass
@@ -85,7 +86,8 @@ class LineSDK():
 
     def on_message(self, event):
         ctx = Context(event, self.lineapi)
-        self.parse_command(ctx, *event.message.text.split(" "))
+        splitted = shlex.split(event.message.text)
+        self.parse_command(ctx, *splitted)
         return
     
     def on_follow(self, event):
