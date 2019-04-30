@@ -78,7 +78,6 @@ class LineSDK():
         return decorate
 
     def parse_command(self, ctx, cmd, *args) -> bool :
-        print(self.commands)
         if cmd in self.commands:
             self.commands[cmd](ctx, *args)
             return True
